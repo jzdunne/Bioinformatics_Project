@@ -5,12 +5,13 @@
 infile = 'dataset.soft'
 fh = open(infile)
 line = fh.read()
+#DMAM 29/1 Using read() instead of readline() will read a certain number of characters, not necessarily just the first line.
 
 #step 2. read the first line and then read more lines while the line doesn't match a specific pattern
 
 while line != '!dataset_table_begin': #need to complete this
   line !=fh.readline()    
-
+#DMAM 29/1 check the line above - is it really a comparison you want to do?
 
 header= fh.readline().strip()
 
@@ -86,7 +87,7 @@ for line in fh.readlines():
 genefile.close
 probefile.close
 expressionfile.close
-
+#DMAM 29/1 when you call a method, remmeber to include the parentheses.
 #print out a message to indicate success with outputting the data.
 print '%s rows processed'%rows
 
