@@ -4,14 +4,15 @@
 # step 1. open the data file
 infile = 'dataset.soft'
 fh = open(infile)
-line = fh.read()
-#DMAM 29/1 Using read() instead of readline() will read a certain number of characters, not necessarily just the first line.
+line = fh.readline()
 
 #step 2. read the first line and then read more lines while the line doesn't match a specific pattern
 
-while line != '!dataset_table_begin': #need to complete this
-  line !=fh.readline()    
-#DMAM 29/1 check the line above - is it really a comparison you want to do?
+while line[:20] != '!dataset_table_begin':
+  line=fh.readline()
+  break
+
+
 
 header= fh.readline().strip()
 
@@ -37,36 +38,33 @@ probefields=['ID_REF','Gene ID']
 
 
 def buildrow(row, fields):
-	'''Creates a tab separated list of values according to the columns listed in fields
-	row: a list of values
-	fields: a list of columns. Only the values in row corresponding to the columns in fields are output
-	returns: A string that is a tab separated list of values terminated with a newline
-	'''
-    newrow=[]
-    for f in fields:
-        newrow.append(row[int(colnames[f])])
+'''Creates a tab separated list of values according to the columns listed in fields\n\trow: a list of values\n\tfields: a list of columns. Only the values in row corresponding to the columns in fields are output\n\treturns: A string that is a tab separated list of values terminated with a newline\n\t'''
+  newrow=[]
+  for f in fields:
+    newrow.append(row[int(colnames[f])])
     return "\t".join(newrow)+"\n"
 
 
+
+
 	#creates the rows for the expression file, is slightly different because for each probe and experiment there are several gene expression values.
+
+
 def build_expression(row, samples):
-	'''Builds tab separated rows for expression data. For each of the samples listed 
-	it generates a line with the probe id, sample id and expression value.
-	row: a list of values
-	samples: a list of column headings corresponding to the samples
-	'''
-    exprrows=[]
-    for s in samples:
-        newrow=[s,]
-	newrow.append(row[int(colnames['ID_REF'])])
-	newrow.append(row[int(colnames[s])])
-	exprrows.append("\t".join(newrow))
-    return "\n".join(exprrows)+"\n"
+'''Builds tab separated rows for expression data. For each of the samples listed it generates a line with the probe id, sample id and expression value. row: a list of values. samples: a list of column headings corresponding to the samples.'''
+  exprrows=[]
+  for s in samples:
+    newrow=[s,]
+    newrow.append(row[int(colnames['ID_REF'])])
+    newrow.append(row[int(colnames[s])])
+    exprrows.append("\t".join(newrow))
+  return "\n".join(exprrows)+"\n"
+
 	
 	
 #initialise a counter to count how many probe rows were processed.   
 
-rows = probes.txt.count(newrow)
+rows = probefields.count('newrow')
 print (rows)
  
 #writes the data to the files 
@@ -84,10 +82,10 @@ for line in fh.readlines():
 		pass
 
 #close the created files after the data has been writen to them
-genefile.close
-probefile.close
-expressionfile.close
-#DMAM 29/1 when you call a method, remmeber to include the parentheses.
+genefile.close()
+probefile.close()
+expressionfile.close()
+
 #print out a message to indicate success with outputting the data.
 print '%s rows processed'%rows
 
