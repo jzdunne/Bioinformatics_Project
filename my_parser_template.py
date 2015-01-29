@@ -4,6 +4,8 @@
 # step 1. open the data file
 infile = 'dataset.soft'
 fh = open(infile)
+line = fh.read()
+
 #step 2. read the first line and then read more lines while the line doesn't match a specific pattern
 
 while line != '!dataset_table_begin': #need to complete this
@@ -23,6 +25,9 @@ for title in header.split('\t'):
 
 
 #open our output files, one per table.
+genefile=open('genes.txt', 'w')
+probefile=open('probes.txt', 'w')
+expressionfile=open('expression.txt', 'w')
 
 #defines which columns are to go in each output file. For samples it is the 3rd header until the gene title header and they will be separated by '\t'
 genefields=['Gene ID', 'Gene symbol', 'Gene title']
@@ -58,7 +63,11 @@ def build_expression(row, samples):
     return "\n".join(exprrows)+"\n"
 	
 	
-#initialise a counter to count how many probe rows were processed.    
+#initialise a counter to count how many probe rows were processed.   
+
+rows = probes.txt.count(newrow)
+print (rows)
+ 
 #writes the data to the files 
 for line in fh.readlines():
     try:
@@ -68,13 +77,19 @@ for line in fh.readlines():
         genefile.write(buildrow(row, genefields))
         probefile.write(buildrow(row,probefields))
         expressionfile.write(build_expression(row, samples))	
+	rows=rows+1
 		#increment the row counter
     except:
 		pass
 
 #close the created files after the data has been writen to them
+genefile.close
+probefile.close
+expressionfile.close
 
 #print out a message to indicate success with outputting the data.
+print '%s rows processed'%rows
+
 
 
 
