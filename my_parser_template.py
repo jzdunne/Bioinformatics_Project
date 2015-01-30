@@ -10,8 +10,10 @@ line = fh.readline()
 
 while line[:20] != '!dataset_table_begin': #searches and reads first line
   line=fh.readline() #keeps reading consecutive lines (?)
-  if line [20:] != ('!dataset_table_end'): #stops reading document here
-    break
+  if line [20:] != ('!dataset_table_end'): #stops reading document here 
+    break #DMAM 30/1 Which lines will this match and what will it do? 
+   
+#DMAM 30/1 try sticking  a print statement here to ensure that the value of line is what you expect.
 
 header= fh.readline().strip()
 
@@ -63,7 +65,7 @@ def build_expression(row, samples):
 	
 #initialise a counter to count how many probe rows were processed.   
 
-rows = probefields.count('newrow')
+rows = probefields.count('newrow') #DMAM 30/1 what is thsi line doing?
 print (rows)
  
 #writes the data to the files 
