@@ -8,11 +8,10 @@ line = fh.readline()
 
 #step 2. read the first line and then read more lines while the line doesn't match a specific pattern
 
-while line[:20] != '!dataset_table_begin':
-  line=fh.readline()
-  break
-
-
+while line[:20] != '!dataset_table_begin': #searches and reads first line
+  line=fh.readline() #keeps reading consecutive lines (?)
+  if line [20:] != ('!dataset_table_end'): #stops reading document here
+    break
 
 header= fh.readline().strip()
 
@@ -38,7 +37,7 @@ probefields=['ID_REF','Gene ID']
 
 
 def buildrow(row, fields):
-'''Creates a tab separated list of values according to the columns listed in fields\n\trow: a list of values\n\tfields: a list of columns. Only the values in row corresponding to the columns in fields are output\n\treturns: A string that is a tab separated list of values terminated with a newline\n\t'''
+  '''Creates a tab separated list of values according to the columns listed in fields\n\trow: a list of values\n\tfields: a list of columns. Only the values in row corresponding to the columns in fields are output\n\treturns: A string that is a tab separated list of values terminated with a newline\n\t'''
   newrow=[]
   for f in fields:
     newrow.append(row[int(colnames[f])])
@@ -51,7 +50,7 @@ def buildrow(row, fields):
 
 
 def build_expression(row, samples):
-'''Builds tab separated rows for expression data. For each of the samples listed it generates a line with the probe id, sample id and expression value. row: a list of values. samples: a list of column headings corresponding to the samples.'''
+  '''Builds tab separated rows for expression data. For each of the samples listed it generates a line with the probe id, sample id and expression value. row: a list of values. samples: a list of column headings corresponding to the samples.'''
   exprrows=[]
   for s in samples:
     newrow=[s,]
