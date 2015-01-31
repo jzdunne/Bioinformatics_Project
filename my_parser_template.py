@@ -8,10 +8,13 @@ line = fh.readline()
 
 #step 2. read the first line and then read more lines while the line doesn't match a specific pattern
 
-while line[:20] != '!dataset_table_begin': #searches and reads first line
-  line=fh.readline() #keeps reading consecutive lines (?)
-  if line [20:] != ('!dataset_table_end'): #stops reading document here 
-    break #DMAM 30/1 Which lines will this match and what will it do? 
+while line[:20] != '!dataset_table_begin': #while lines from 20 are not equal to '', 
+  line [:20]=fh.readline() #read line
+  if line[:20] == '!dataset_table_begin':
+    break
+#DMAM 30/1 Which lines will this match and what will it do? 
+
+
    
 #DMAM 30/1 try sticking  a print statement here to ensure that the value of line is what you expect.
 
@@ -34,7 +37,7 @@ expressionfile=open('expression.txt', 'w')
 
 #defines which columns are to go in each output file. For samples it is the 3rd header until the gene title header and they will be separated by '\t'
 genefields=['Gene ID', 'Gene symbol', 'Gene title']
-samples=header.split('\t')[2:int(colnames['Gene title'])]
+expressionfields=header.split('\t')[2:int(colnames['Gene title'])]
 probefields=['ID_REF','Gene ID']
 
 
@@ -48,7 +51,7 @@ def buildrow(row, fields):
 
 
 
-	#creates the rows for the expression file, is slightly different because for each probe and experiment there are several gene expression values.
+#creates the rows for the expression file, is slightly different because for each probe and experiment there are several gene expression values.
 
 
 def build_expression(row, samples):
@@ -65,7 +68,8 @@ def build_expression(row, samples):
 	
 #initialise a counter to count how many probe rows were processed.   
 
-rows = probefields.count('newrow') #DMAM 30/1 what is thsi line doing?
+rows = probefields.count('exprrow') #counts processed rows to check rows are being processed.
+#DMAM 30/1 what is thsi line doing?
 print (rows)
  
 #writes the data to the files 
