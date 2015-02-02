@@ -37,7 +37,7 @@ expressionfile=open('expression.txt', 'w')
 
 #defines which columns are to go in each output file. For samples it is the 3rd header until the gene title header and they will be separated by '\t'
 genefields=['Gene ID', 'Gene symbol', 'Gene title']
-expressionfields=header.split('\t')[2:int(colnames['Gene title'])]
+samples=header.split('\t')[2:int(colnames['Gene title'])]
 probefields=['ID_REF','Gene ID']
 
 
