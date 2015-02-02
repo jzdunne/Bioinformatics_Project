@@ -5,13 +5,13 @@
 infile = 'dataset.soft'
 fh = open(infile)
 line = fh.readline()
-
+print("first line" + line)
 #step 2. read the first line and then read more lines while the line doesn't match a specific pattern
 
 while line[:20] != '!dataset_table_begin': #while lines from 20 are not equal to '', 
-  line [:20]=fh.readline() #read line
-  if line[:20] == '!dataset_table_begin':
-    break
+  line=fh.readline() #read line
+  #if line[:20] == '!dataset_table_begin':
+   # break
 #DMAM 30/1 Which lines will this match and what will it do? 
 
 
@@ -19,7 +19,7 @@ while line[:20] != '!dataset_table_begin': #while lines from 20 are not equal to
 #DMAM 30/1 try sticking  a print statement here to ensure that the value of line is what you expect.
 
 header= fh.readline().strip()
-
+print("Headers " + header)
 #capture the column names
 colnames={}
 index=0
@@ -46,7 +46,7 @@ def buildrow(row, fields):
   newrow=[]
   for f in fields:
     newrow.append(row[int(colnames[f])])
-    return "\t".join(newrow)+"\n"
+  return "\t".join(newrow)+"\n"
 
 
 
