@@ -1,0 +1,27 @@
+CREATE TABLE gene_info (
+clone_platform integer not null primary key auto_increment,
+accession varchar(10) not null,
+description varchar(256)
+);
+LOAD DATA LOCAL INFILE 'genes.txt' INTO TABLE gene_info (id, accession, description);
+describe genes_info
+ -- this creates a table with information on the genes examined: ID, accession and what they do
+
+CREATE TABLE results (
+GSM_sequence varchar(10),
+ID_REF varchar(10),
+expression_value varchar(256)
+);
+LOAD DATA LOCAL INFILE 'expression.txt' INTO TABLE results (GSM_sequence, ID_REF, expression_value);
+-- this shows the results of experiment and is linked through probes table to gene_info
+
+CREATE TABLE probestwo (
+gene_info integer not null,
+FOREIGN KEY (gene_info) REFERENCES gene_info(clone_platform),
+ID_REF varchar(10)
+);
+LOAD DATA LOCAL INFILE 'probes.txt' INTO TABLE probes (ID_REF, clone_platform);
+--this is an intermediate table to combine the results with the gene information,
+ only attempt, not working yet and edited form the code that formed tthe 'probes' table
+
+
