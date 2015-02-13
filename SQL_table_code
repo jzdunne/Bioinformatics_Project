@@ -1,29 +1,28 @@
 CREATE TABLE gene_info (
-clone_platform integer not null primary key,
-accession varchar(10) not null,
-description varchar(256)
+Gene_ID integer not null primary key,
+Accession varchar(10) not null,
+Description varchar(256)
 );
-LOAD DATA LOCAL INFILE 'genes.txt' INTO TABLE gene_info (clone_platform, accession, description);
+LOAD DATA LOCAL INFILE 'genes.txt' INTO TABLE gene_info (Gene_ID, accession, description);
 describe genes_info
- -- this creates a table with information on the genes examined: Clone platform, accession and what they do
+ -- this creates a table with information on the genes examined: Gene_ID, accession and what they do
 
-CREATE TABLE resultstwo (
-probestwo varchar(256),
-FOREIGN KEY (probestwo) REFERENCES probestwo(clone_platform),
+CREATE TABLE probes (
+Gene_ID varchar(256),
+FOREIGN KEY (Gene_ID) REFERENCES Gene_info(Gene_ID),
+ID_REF varchar(10) primary key
+);
+LOAD DATA LOCAL INFILE 'probes.txt' INTO TABLE probes (ID_REF, Gene_ID);
+--this is an intermediate table to combine the results with the gene information]
+
+CREATE TABLE expression (
+ID_REF varchar(256),
+FOREIGN KEY (ID_REF) REFERENCES probes(ID_REF),
 GSM_sequence varchar(10),
 expression_value varchar(256)
 );
-LOAD DATA LOCAL INFILE 'expression.txt' INTO TABLE resultstwo (GSM_sequence, probestwo, expression_value);
+LOAD DATA LOCAL INFILE 'expression.txt' INTO TABLE expression (GSM_sequence, ID_REF, expression_value);
 -- this shows the results of experiment and is linked through probes table to gene_info
 
-CREATE TABLE probestwo (
-gene_info varchar(256),
-FOREIGN KEY (gene_info) REFERENCES gene_info(clone_platform),
-clone_platform varchar(256),
-ID_REF varchar(10) primary key
-);
-LOAD DATA LOCAL INFILE 'probes.txt' INTO TABLE probestwo (ID_REF, gene_info);
---this is an intermediate table to combine the results with the gene information,
- only attempt, not working yet and edited form the code that formed the 'probes' table
 
 
