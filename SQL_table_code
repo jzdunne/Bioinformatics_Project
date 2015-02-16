@@ -3,12 +3,12 @@ Gene_ID integer not null primary key,
 Accession varchar(10) not null,
 Description varchar(256)
 );
-LOAD DATA LOCAL INFILE 'genes.txt' INTO TABLE gene_info (Gene_ID, accession, description);
+LOAD DATA LOCAL INFILE 'genes.txt' INTO TABLE gene_info (Gene_ID, Gene symbol, Gene title);
 describe genes_info
  -- this creates a table with information on the genes examined: Gene_ID, accession and what they do
 
 CREATE TABLE probes (
-Gene_ID varchar(256),
+Gene_ID integer not null,
 FOREIGN KEY (Gene_ID) REFERENCES Gene_info(Gene_ID),
 ID_REF varchar(10) primary key
 );
@@ -16,13 +16,22 @@ LOAD DATA LOCAL INFILE 'probes.txt' INTO TABLE probes (ID_REF, Gene_ID);
 --this is an intermediate table to combine the results with the gene information]
 
 CREATE TABLE expression (
-ID_REF varchar(256),
+ID_REF varchar(10),
 FOREIGN KEY (ID_REF) REFERENCES probes(ID_REF),
-GSM_sequence varchar(10),
-expression_value varchar(256)
+expression_value varchar(256),
+Sample_ID varchar(256) primary key
 );
-LOAD DATA LOCAL INFILE 'expression.txt' INTO TABLE expression (GSM_sequence, ID_REF, expression_value);
+LOAD DATA LOCAL INFILE 'expression.txt' INTO TABLE expression (ID_REF, Sample_ID, expression_value);
 -- this shows the results of experiment and is linked through probes table to gene_info
+
+CREATE TABLE sample (
+Sample_ID varchar(256),
+FOREIGN KEY (Sample_ID) REFERENCES expression(Sample_ID),
+Subset varchar(256)
+);
+
+ --this table provides information on the samples, linked to expression table and needs more data from parser(?)
+
 
 
 
