@@ -27,9 +27,10 @@ LOAD DATA LOCAL INFILE 'expression.txt' INTO TABLE expression (ID_REF, Sample_ID
 CREATE TABLE sample (
 Sample_ID varchar(256),
 FOREIGN KEY (Sample_ID) REFERENCES expression(Sample_ID),
-Subset varchar(256)
+subset varchar(10),
+subject_number varchar(256)
 );
-
+LOAD DATA LOCAL INFILE 'samples.txt' INTO TABLE sample (Sample_ID, subset, subject_number);
  --this table provides information on the samples, linked to expression table and needs more data from parser(?)
 
 
