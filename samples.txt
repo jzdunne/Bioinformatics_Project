@@ -1,0 +1,29 @@
+GSM389652	 CF	 subject1
+GSM389653	 CF	 subject2
+GSM389654	 CF	 subject3
+GSM389655	 CF	 subject4
+GSM389656	 CF	 subject5
+GSM389657	 CF	 subject6
+GSM389658	 CF	 subject7
+GSM389659	 CF	 subject8
+GSM389660	 CF	 subject9
+GSM389661	 CF	 subject10
+GSM389662	 CF	 subject11
+GSM389663	 CF	 subject12
+GSM389664	 CF	 subject13
+GSM389665	 CF	 subject14
+GSM389666	 CF	 subject15
+GSM389667	 CF	 subject16
+GSM389668	 non-CF	 subject 29
+GSM389669	 non-CF	 subject 30
+GSM389670	 non-CF	 subject 31
+GSM389671	 non-CF	 subject 32
+GSM389672	 non-CF	 subject 33
+GSM389673	 non-CF	 subject 34
+GSM389674	 non-CF	 subject 35
+GSM389675	 non-CF	 subject 36
+GSM389676	 non-CF	 subject 37
+GSM389677	 non-CF	 subject 38
+GSM389678	 non-CF	 subject 39
+GSM389679	 non-CF	 subject 40
+GSM389680	 non-CF	 subject 41
