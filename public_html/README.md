@@ -1,0 +1,1 @@
+OPEN cgi-bin
