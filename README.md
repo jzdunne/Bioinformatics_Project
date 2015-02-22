@@ -1,8 +1,6 @@
-This project aims to display data about Cystic Fibrosis on a webpage in a database. 
-Currently I am at the stage where I have downloaded the data and written a parser which extracts the data I want to make tables I can link through a database.
-Comments on each part of the code are available at the file my_parser_template.py and I plan on modifying this to extract more data into tables after I have grasped futher concepts.
-I have a code creating and linking this data into three tables based on accession number, ID reference and the results of the experiments. I will expand this code to create at least 5 linked tables with some more of the data. Currently my table code is effective and increasing the number of tables shouldn't take too long. (SQL_table_code)
-I am now working through the information on webpages as I am unsure about the class part of the plan however am still trying to utilise my time.
-I have completed various webpage examples and these can be seen at http://ts-ug-dev.lifesci.dundee.ac.uk/~jzdunne/index.html.
-At this weeks lab I hope for information on writing classes in python and the purpose of this.
-*Updated 09/02/2015*
+This is the repository for the code that establishes a webpage and a database it communicates with to provide information on the data from a study analysing the rectal epithelia of Cystic Fibrosis sufferers to identify gene expression.
+'Cystic Fibrosis: rectal epithelia' is a dataset which was downloaded from GEO. This can be found under 'dataset.soft'.
+A parser was written using python to extract the data into 3 files. This code is contained in the file 'my_parser_template.py'.
+From the 3 datafiles (genes.txt, probes.txt and expression.txt), a fourth file was created (samples.txt).
+These 4 files were put into tables using MySQL and these tables were all linked forming a database. The code for this is in the file 'SQL_table_code'.
+The folder public_html contains another; cgi-bin, and it is this that contains the code for the webpage (final_webpage.html) and the CGI forms linking the website to the database.
