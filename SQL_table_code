@@ -16,12 +16,12 @@ LOAD DATA LOCAL INFILE 'probes.txt' INTO TABLE probes (ID_REF, Gene_ID);
 --this is an intermediate table to combine the results with the gene information]
 
 CREATE TABLE expression (
-ID_REF varchar(10),
+Sample_ID varchar(256) primary key,
+ID_REF varchar(256),
 FOREIGN KEY (ID_REF) REFERENCES probes(ID_REF),
-expression_value varchar(256),
-Sample_ID varchar(256) primary key
+expression_value varchar(256)
 );
-LOAD DATA LOCAL INFILE 'expression.txt' INTO TABLE expression (ID_REF, Sample_ID, expression_value);
+LOAD DATA LOCAL INFILE 'expression.txt' INTO TABLE expression (Sample_ID, ID_REF, expression_value);
 -- this shows the results of experiment and is linked through probes table to gene_info
 
 CREATE TABLE sample (
