@@ -1,0 +1,9 @@
+<html><head><title>Test form</title></head>
+<body>
+<form action="/~jzdunne/cgi-bin/testscript.py" method=GET>
+<input type="text" name="name" value="Enter your name" size=30/>
+<input type="Submit" value="Go"/>
+
+</form>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<html><head><title>Test form</title></head>
+<body>
+<form action="/~jzdunne/cgi-bin/testscript.py" method=GET> #relates the form to the file
+<input type="text" name="name" value="Enter your name" size=30/>
+<input type="Submit" value="Go"/> #submit button makes the form go back to the testscript
+</form>
+</body>
+</html>
+
+#in practice
+
+SELECT AVG (LOG(expression)) from expression
+
+sql="SELECT expression from expression e inner join g on e.gene_id=g.gene_id where gene_id= %s"
+db=MySQLdb.connect(....)
+cursor=db.curosr()
+cursor.execute(sql,form[geneid].value)
+
+gene=Gene(form[geneid].value)
+results=gene.getExpression() #gives back a list
+
+print "<table><tr><th>Sample</th><th>Expression</th></tr>"
+for exp in results:
+  print "<tr><td>%s</td><td>%s</td></tr>"%exp
+
+print "</table>"

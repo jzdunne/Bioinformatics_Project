@@ -1,0 +1,8 @@
+<html><head><title>Gene Expression and Cystic Fibrosis</title></head>
+<body>
+<form action="/~jzdunne/cgi-bin/testscript.py" method=GET> #relates the form to the file
+<input type="text" name="name" value="Enter Entrez Gene_ID" size=30/>
+<input type="Submit" value="Go"/> #submit button makes the form go back to the query file
+</form>
+</body>
+</html>
