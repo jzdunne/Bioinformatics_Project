@@ -1,3 +1,4 @@
+#creates classes
 import MySQLdb
 
 class DBHandler():
@@ -6,18 +7,20 @@ class DBHandler():
   dbname='jzdunne'
   dbuser='jzdunne'
   dbpassword='PxFPTOvk'
-  def __init___(self):
-  '''initialising Database'''
-   if DBHandler.connection == None:
+
+  def __init__(self):
+    '''initialising Database'''
+    if DBHandler.connection == None:
        DBHandler.connection = MySQLdb.connect(db=DBHandler.dbname, user=DBHandler.dbuser, passwd=DBHandler.dbpassword)
+
   def cursor(self):
     return DBHandler.connection.cursor()
 
 
 class Gene():
   '''A class that describes a gene'''
-  accession=''
-  description=''
+  Accession=''
+  Description=''
   Gene_ID=''
   probeslist=[]
   def __init__(self, Gene_ID):
@@ -34,20 +37,19 @@ class Gene():
     self.Description=result[1]
     #now fetch the probes..
     probesql='select ID_REF from probes where Gene_ID=%s'
-    cursor.execute(probessql,(ID_REF))
+    cursor.execute(probesql,(Gene_ID))
     for result in cursor.fetchall():
-      self.probelist.append(result[0])
-  def get_expression(self, ID_REF):
+      self.probeslist.append(result[0])
+  def get_expression(self):
     '''Gets expression value for the Gene'''
     db=DBHandler()
     cursor=db.cursor()
-    sql='select Sample_ID, expression_value from expression where ID_REF=%s'
-    cursor.execute(sql,(ID_REF))
-    for result in cursor.fetchone():
-      self.Sample_ID=result[0]
-      self.expression_value=result[1]
-
-
-print("Done!")
+    expsql='select sum(expression_value)/count(expression_value) from expression where ID_REF=%s'
+    cursor.execute(expsql,(probeslist[0]))
+    result=cursor.fetchall()
+    for result in cursor:
+      self.expression_value.append(result[0])
+   #this final definition does not yet work, requires examining to fix however rest of class works
+print("classes.py imported")
 
   
