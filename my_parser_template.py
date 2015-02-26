@@ -10,15 +10,8 @@ print("first line" + line)
 
 while line[:20] != '!dataset_table_begin': #while lines from 20 are not equal to '', 
   line=fh.readline() #read line
-  #if line[:20] == '!dataset_table_begin':
-   # break
-#DMAM 30/1 Which lines will this match and what will it do? 
-
-
    
-#DMAM 30/1 try sticking  a print statement here to ensure that the value of line is what you expect.
-
-header= fh.readline().strip()
+header= fh.readline().strip() #reads the header of each column
 print("Headers " + header)
 #capture the column names
 colnames={}
@@ -69,7 +62,7 @@ def build_expression(row, samples):
 #initialise a counter to count how many probe rows were processed.   
 
 rows = probefields.count('exprrow') #counts processed rows to check rows are being processed.
-#DMAM 30/1 what is thsi line doing?
+
 print (rows)
  
 #writes the data to the files 
